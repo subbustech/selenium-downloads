@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta keywords="selenium,webdriver,java,html">
+<meta description="Java Selenium Webdriver Course">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://code.jquery.com/ui/1.8.24/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+function readURL(input) {
+	if (input.files && input.files[0]) {
+        	var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(75)
+                        .height(50);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+	}
+}
+
+function readcssURL(input) {
+	if (input.files && input.files[0]) {
+        	var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blahcss')
+                        .attr('src', e.target.result)
+                        .width(75)
+                        .height(50);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+	}
+}
+</script>
+
+<script type="text/javascript">
+$(function () {
+    $("#dvSource img").draggable({
+        revert: "invalid",
+        refreshPositions: true,
+        drag: function (event, ui) {
+            ui.helper.addClass("draggable");
+        },
+        stop: function (event, ui) {
+            ui.helper.removeClass("draggable");
+            var image = this.src.split("/")[this.src.split("/").length - 1];
+            if ($.ui.ddmanager.drop(ui.helper.data("draggable"), event)) {
+                alert(image + " dropped.");
+            }
+            else {
+                alert(image + " not dropped.");
+            }
+        }
+    });
+    $("#dvDest").droppable({
+        drop: function (event, ui) {
+            if ($("#dvDest img").length == 0) {
+                $("#dvDest").html("");
+            }
+            ui.draggable.addClass("dropped");
+            $("#dvDest").append(ui.draggable);
+        }
+    });
+});
+</script>
+
+<style type="text/css">
+.file-upload {
+	position: relative;
+	display: inline-block;
+}
+
+.file-upload__label {
+  display: block;
+  width: 90px;
+  padding: 1em 2em;
+  color: #fff;
+  background: #222;
+  border-radius: .4em;
+  transition: background .3s;
+  
+  &:hover {
+     cursor: pointer;
+     background: #000;
+  }
+}
+</style>
+<style type="text/css">
+body
+{
+    font-family: Arial;
+    font-size: 9pt;
+}
+img
+{
+    
+    margin: 2px;
+}
+.draggable
+{
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+}
+.dropped
+{
+    position: static !important;
+}
+#dvSource, #dvDest
+{
+    border: 5px solid #ccc;
+    padding: 1px;
+    min-height: 50px;
+    width: 305px;
+}
+</style>
+
+<script type="text/javascript">
+function showbutton(){
+	document.getElementById('dynbutton').style.display = 'block';
+}
+</script>
+
+<script type="text/javascript">
+setTimeout(function myfunc(){
+	document.getElementById('delayedbutton').style.display = 'block';
+},5000);
+window.onload = myfunc;
+</script>
+
+</head>
+<body>
+
+
+<table width="99%" align="center" border="0">
+<tr><td colspan="4" bgcolor="#787656" align="center" height="50"><font color="white" size="10"><b>Practicing Selenium</b></font></td></tr>
+<tr><td bgcolor="#787656" align="center" height="20"><font color="white" size="4"><b><a href="popage1.html">Page 1</a> | <a href="popage2.html">Page 2</a> | <a href="popage3.html">Page 3</a> | <a href="popage4.html">Page 4</a></b></font></td></tr>
+</td><td width="25%" valign="top">
+
+
+Checking if something is visible:<br>
+<table>
+<tr><td>
+<button type="button" name="makevisible" id="makevisible" onclick="document.getElementById('hiddentext').style.display = 'block'">Make div Visible</button>
+</td><td>
+<div id="hiddentext" style="display:none">I was hiddedn</div>
+</td></tr></table><br>
+
+Delayed loading of an element:
+<table><tr><td>
+<button type='button' id='delayedbutton' style="display:none">Delayed Button</button>
+</tr></td></table><br>
+
+Displaying a dynamic button:
+<table><tr><td>
+<button type="button" id="dispdynbutton" onclick="setTimeout(showbutton,3000);">Display Dynamic Button</button>
+</td><td>
+<button type='button' id='dynbutton' style="display:none">Dynamic Button</button>
+</td></tr></table><br>
+
+Displaying button on Mouseover:
+<table><tr onmouseover="document.getElementById('mouseoverbtn').style.display='block'"><td id="movehere">
+Move Mouse Here</td><td>
+<button type='button' id='mouseoverbtn' style="display:none" onclick="alert('you clicked on mouseoverbtn')">Dynamic Button 2</button>
+</td></tr></table><br>
+
+Child Window:
+<table><tr><td>
+Click The Link: </td><td>
+<a href="http://www.google.com" target="_blank">Google Link</a>
+</td></tr></table>
+
+<iframe src="frames/frame1.html" name="frame1" height="70px" frameborder="0"></iframe><br>
+Drag and Drop images:
+<div id="dvSource">
+    <img alt="" src="images/image1.jpg" />
+    <img alt="" src="images/image2.jpg" />
+    <img alt="" src="images/image3.jpg" />
+    <img alt="" src="images/image4.jpg" />
+</div>
+<div id="dvDest">
+    Drop here
+</div>
+</td></tr></table>
+</body>
+</html>

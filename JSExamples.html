@@ -1,0 +1,39 @@
+<html>
+<head>
+<script type="text/javascript">
+function setValueById() {
+	var element = document.getElementById("firstname");
+	element.value = "hi";
+}
+function setValueByName() {
+	var element = document.getElementsByName("firstname");
+	element[0].value = "hi";
+}
+function setValueByTagName() {
+	var element = document.getElementsByTagName("input");
+	element[4].value = "hi";
+	element[4].style.backgroundColor = "red";
+}
+function setValueByClassName() {
+	var element = document.getElementsByClassName("beautiful text box");
+	element[0].value = "hi";
+	element[0].style.backgroundColor = "blue";
+}
+</script>
+
+</head>
+<body>
+Text Box:<br>
+<input id="firstname" class="beautifultextbox" type="text" ><input type="button" onClick="setValueById()" value="Set Value by Id"></input><br><br>
+
+Text Box:<br>
+<input name="firstname" class="beautifultextbox" type="text" ><input type="button" onClick="setValueByName()" value="Set Value by Name"></input><br><br>
+
+Text Box with attribute:<br>
+<input color="red" type="text" ><input type="button" onClick="setValueByTagName()" value="Set Value by Tag Name"></input><br><br>
+
+Text Box with Spaces in ids, names attributes<br>
+<input name="first name" id="first name" class="beautiful text box" type="text" ><input type="button" onClick="setValueByClassName()" value="Set Value by Class Name"></input><br><br>
+
+</body>
+</html>
